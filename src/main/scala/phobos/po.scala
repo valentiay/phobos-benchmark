@@ -3,7 +3,7 @@ package phobos
 import ru.tinkoff.phobos.annotations.{ElementCodec, XmlCodec}
 import ru.tinkoff.phobos.syntax.attr
 
-object order {
+object po {
 
   @XmlCodec("purchaseOrder")
   case class PurchaseOrderType(
