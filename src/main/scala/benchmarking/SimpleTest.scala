@@ -1,11 +1,19 @@
+package benchmarking
+
+import java.util.concurrent.TimeUnit
+
+import org.openjdk.jmh.annotations._
 import phobos.po.{Item, Items, PurchaseOrderType, USAddress}
+import ru.tinkoff.phobos.decoding.XmlDecoder
 import ru.tinkoff.phobos.encoding.XmlEncoder
 
 import scala.util.Random
+import scala.xml.XML
 
-object SimpleDecodingBenchmark {
-  val testName = "SimpleDecoding"
-
+@State(Scope.Thread)
+@BenchmarkMode(Array(Mode.AverageTime))
+@OutputTimeUnit(TimeUnit.SECONDS)
+class SimpleTest {
   val stringLength = 20
 
   def genItem: Item =
@@ -43,7 +51,11 @@ object SimpleDecodingBenchmark {
     XmlEncoder[PurchaseOrderType].encode(purchaseOrder)
   }
 
-  def main(args: Array[String]): Unit = {
-    benchmark.testDecoding[phobos.po.PurchaseOrderType, xb.PurchaseOrderType](testName, args, genOrder)
-  }
+  val test1000: String = genOrder(1000)
+
+  @Benchmark
+  def phobos = XmlDecoder[PurchaseOrderType].decode(test1000)
+
+  @Benchmark
+  def xbB = scalaxb.fromXML[xb.PurchaseOrderType](XML.loadString(test1000))
 }
