@@ -13,7 +13,6 @@ lazy val root = (project in file(".")).
   enablePlugins(JmhPlugin).
   settings(inThisBuild(List(
     organization := "com.example",
-    scalaVersion := "2.11.8",
     addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
   ))).
   settings(
