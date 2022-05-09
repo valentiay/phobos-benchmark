@@ -1,0 +1,130 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="BalancedItems">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="BalancedItem" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="BalancedItem">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element ref="foo"/>
+                <xsd:element ref="bar"/>
+                <xsd:element ref="baz"/>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="foo">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element name="foobar">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="foobarbaz" type="xsd:int"/>
+                            <xsd:element name="foobarqux" type="xsd:string"/>
+                            <xsd:element name="foobarbat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="foobarattr" type="xsd:string"/>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="foobaz">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="foobazbar" type="xsd:int"/>
+                            <xsd:element name="foobazqux" type="xsd:string"/>
+                            <xsd:element name="foobazbat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="foobazattr" type="xsd:string"/>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="fooqux">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="fooquxbar" type="xsd:int"/>
+                            <xsd:element name="fooquxbaz" type="xsd:string"/>
+                            <xsd:element name="fooquxbat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="fooquxattr" type="xsd:string"/>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="bar">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element name="barfoo">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="barfoobaz" type="xsd:int"/>
+                            <xsd:element name="barfooqux" type="xsd:string"/>
+                            <xsd:element name="barfoobat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="barfooattr" type="xsd:int"/>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="barbaz">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="barbazfoo" type="xsd:int"/>
+                            <xsd:element name="barbazqux" type="xsd:string"/>
+                            <xsd:element name="barbazbat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="barbazattr" type="xsd:int"/>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="barqux">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="barquxfoo" type="xsd:int"/>
+                            <xsd:element name="barquxbaz" type="xsd:string"/>
+                            <xsd:element name="barquxbat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="barquxattr" type="xsd:int"/>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="baz">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element name="bazfoo">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="bazfoobar" type="xsd:int"/>
+                            <xsd:element name="bazfooqux" type="xsd:string"/>
+                            <xsd:element name="bazfoobat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="bazfooattr" type="xsd:double"/>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="bazbar">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="bazbarfoo" type="xsd:int"/>
+                            <xsd:element name="bazbarqux" type="xsd:string"/>
+                            <xsd:element name="bazbarbat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="bazbarattr" type="xsd:double"/>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="bazqux">
+                    <xsd:complexType>
+                        <xsd:all>
+                            <xsd:element name="bazquxfoo" type="xsd:int"/>
+                            <xsd:element name="bazquxbar" type="xsd:string"/>
+                            <xsd:element name="bazquxbat" type="xsd:double"/>
+                        </xsd:all>
+                        <xsd:attribute name="bazquxattr" type="xsd:double"/>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

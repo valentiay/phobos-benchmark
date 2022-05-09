@@ -1,0 +1,76 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="WideItem">
+        <xsd:complexType>
+        <xsd:all>
+                <xsd:element name="bazfoobar" type="xsd:string"/>
+                <xsd:element name="bazbarfoo" type="xsd:string"/>
+                <xsd:element name="foobarbat" type="xsd:short"/>
+                <xsd:element name="foobatbar" type="xsd:int"/>
+                <xsd:element name="barfoobat" type="xsd:long"/>
+                <xsd:element name="barbatfoo" type="xsd:string"/>
+                <xsd:element name="batfoobar" type="xsd:boolean"/>
+                <xsd:element name="batbarfoo" type="xsd:string"/>
+                <xsd:element name="fooquxbaz" type="xsd:short"/>
+                <xsd:element name="foobazqux" type="xsd:int"/>
+                <xsd:element name="quxfoobaz" type="xsd:long"/>
+                <xsd:element name="quxbazfoo" type="xsd:string"/>
+                <xsd:element name="bazfooqux" type="xsd:string"/>
+                <xsd:element name="bazquxfoo" type="xsd:boolean"/>
+                <xsd:element name="fooquxbat" type="xsd:short"/>
+                <xsd:element name="foobatqux" type="xsd:int"/>
+                <xsd:element name="quxfoobat" type="xsd:long"/>
+                <xsd:element name="quxbatfoo" type="xsd:string"/>
+                <xsd:element name="batfooqux" type="xsd:boolean"/>
+                <xsd:element name="batquxfoo" type="xsd:string"/>
+                <xsd:element name="foobazbat" type="xsd:short"/>
+                <xsd:element name="foobatbaz" type="xsd:int"/>
+                <xsd:element name="bazfoobat" type="xsd:long"/>
+                <xsd:element name="bazbatfoo" type="xsd:string"/>
+                <xsd:element name="batfoobaz" type="xsd:string"/>
+                <xsd:element name="batbazfoo" type="xsd:boolean"/>
+                <xsd:element name="barquxbaz" type="xsd:short"/>
+                <xsd:element name="barbazqux" type="xsd:int"/>
+                <xsd:element name="quxbarbaz" type="xsd:boolean"/>
+                <xsd:element name="quxbazbar" type="xsd:long"/>
+                <xsd:element name="bazbarqux" type="xsd:string"/>
+                <xsd:element name="bazquxbar" type="xsd:string"/>
+                <xsd:element name="barquxbat" type="xsd:short"/>
+                <xsd:element name="barbatqux" type="xsd:int"/>
+                <xsd:element name="quxbarbat" type="xsd:boolean"/>
+                <xsd:element name="quxbatbar" type="xsd:long"/>
+                <xsd:element name="batbarqux" type="xsd:string"/>
+                <xsd:element name="batquxbar" type="xsd:string"/>
+                <xsd:element name="barbazbat" type="xsd:short"/>
+                <xsd:element name="barbatbaz" type="xsd:int"/>
+                <xsd:element name="bazbarbat" type="xsd:boolean"/>
+                <xsd:element name="bazbatbar" type="xsd:string"/>
+                <xsd:element name="batbarbaz" type="xsd:long"/>
+                <xsd:element name="batbazbar" type="xsd:string"/>
+                <xsd:element name="quxbazbat" type="xsd:short"/>
+                <xsd:element name="quxbatbaz" type="xsd:int"/>
+                <xsd:element name="bazquxbat" type="xsd:boolean"/>
+                <xsd:element name="bazbatqux" type="xsd:string"/>
+                <xsd:element name="batquxbaz" type="xsd:string"/>
+                <xsd:element name="batbazqux" type="xsd:long"/>
+            </xsd:all>
+            <xsd:attribute name="foobarqux" type="xsd:short"/>
+            <xsd:attribute name="fooquxbar" type="xsd:int"/>
+            <xsd:attribute name="barfooqux" type="xsd:long"/>
+            <xsd:attribute name="barquxfoo" type="xsd:boolean"/>
+            <xsd:attribute name="quxfoobar" type="xsd:string"/>
+            <xsd:attribute name="quxbarfoo" type="xsd:string"/>
+            <xsd:attribute name="foobarbaz" type="xsd:short"/>
+            <xsd:attribute name="foobazbar" type="xsd:int"/>
+            <xsd:attribute name="barfoobaz" type="xsd:long"/>
+            <xsd:attribute name="barbazfoo" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="WideItems">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="WideItem" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

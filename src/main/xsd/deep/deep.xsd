@@ -1,0 +1,12 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:complexType name="deep">
+        <xsd:all>
+            <xsd:element name="bar" type="xsd:string"/>
+            <xsd:element name="baz" type="xsd:double"/>
+            <xsd:element name="deep" type="deep" minOccurs="0"/>
+        </xsd:all>
+        <xsd:attribute name="foo" type="xsd:int"/>
+    </xsd:complexType>
+
+    <xsd:element name="Deep" type="deep"/>
+</xsd:schema>
