@@ -17,8 +17,10 @@ lazy val root =
     .enablePlugins(JmhPlugin)
     .settings(
       libraryDependencies ++= List(scalaXml, scalaParser, phobos, jaxb, jaxbactivation, jaxbruntime),
-      parallelExecution in Test                := false,
-      logBuffered                              := false,
-      scalaxbPackageName in (Compile, scalaxb) := "xb",
+      Test / parallelExecution := false,
+      logBuffered              := false,
+      fork                     := true,
+      javaOptions += "-Xmx4G",
+      Compile / scalaxb / scalaxbPackageName := "xb",
       scalacOptions ++= List("-Ymacro-annotations"),
     )

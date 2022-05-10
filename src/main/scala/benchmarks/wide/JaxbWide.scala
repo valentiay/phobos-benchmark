@@ -1,26 +1,38 @@
 package benchmarks.wide
 
-import javax.xml.bind.annotation.XmlAttribute
+import javax.xml.bind.annotation._
+import utils.jaxb._
 
+import javax.xml.bind._
+
+@XmlRootElement(name = "WideItems")
+@XmlAccessorType(XmlAccessType.FIELD)
 case class JaxbWideItems(
-    WideItem: List[PhobosWide],
-)
+    @FieldXmlElement(name = "WideItem")
+    WideItem: java.util.List[JaxbWide],
+) {
+  def this() = this(new java.util.ArrayList())
+}
 
-//object PhobosWideItems {
-//  implicit val phobosWideItemsDecoder: XmlDecoder[PhobosWideItems] = deriveXmlDecoder("WideItems")
-//}
+object JaxbWideItems {
+  val unmarshaller: Unmarshaller = {
+    val context = JAXBContext.newInstance(classOf[JaxbWideItems])
+    context.createUnmarshaller()
+  }
+}
 
+@XmlAccessorType(XmlAccessType.FIELD)
 case class JaxbWide(
-    @XmlAttribute foobarqux: Short,
-    @XmlAttribute fooquxbar: Int,
-    @XmlAttribute barfooqux: Long,
-    @XmlAttribute barquxfoo: Boolean,
-    @XmlAttribute quxfoobar: String,
-    @XmlAttribute quxbarfoo: String,
-    @XmlAttribute foobarbaz: Short,
-    @XmlAttribute foobazbar: Int,
-    @XmlAttribute barfoobaz: Long,
-    @XmlAttribute barbazfoo: Boolean,
+    @FieldXmlAttribute foobarqux: Short,
+    @FieldXmlAttribute fooquxbar: Int,
+    @FieldXmlAttribute barfooqux: Long,
+    @FieldXmlAttribute barquxfoo: Boolean,
+    @FieldXmlAttribute quxfoobar: String,
+    @FieldXmlAttribute quxbarfoo: String,
+    @FieldXmlAttribute foobarbaz: Short,
+    @FieldXmlAttribute foobazbar: Int,
+    @FieldXmlAttribute barfoobaz: Long,
+    @FieldXmlAttribute barbazfoo: Boolean,
     bazfoobar: String,
     bazbarfoo: String,
     foobarbat: Short,
@@ -71,8 +83,12 @@ case class JaxbWide(
     bazbatqux: String,
     batquxbaz: String,
     batbazqux: Long,
-)
-
-//object PhobosWide {
-//  implicit val phobosWideDecoder: ElementDecoder[PhobosWide] = deriveElementDecoder
-//}
+) {
+  // format: off
+  def this() = this(
+    0, 0, 0, false, "", "", 0, 0, 0, false, "", "", 0, 0, 0, "", false, "", 0, 0, 0, "", "", false, 0, 0, 0, "", false,
+    "", 0, 0, 0, "", "", false, 0, 0, false, 0, "", "", 0, 0, false, 0, "", "", 0, 0, false, "", 0, "", 0, 0, false, "",
+    "", 0,
+  )
+  // format: on
+}
