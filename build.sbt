@@ -1,3 +1,5 @@
+import sbt.Compile
+
 ThisBuild / name := "phobos-benchmark"
 
 ThisBuild / version := "0.1"
@@ -11,16 +13,35 @@ lazy val jaxb           = "javax.xml.bind"          % "jaxb-api"                
 lazy val jaxbactivation = "javax.activation"        % "activation"               % "1.1.1"
 lazy val jaxbruntime    = "org.glassfish.jaxb"      % "jaxb-runtime"             % "2.3.1"
 
-lazy val root =
-  (project in file("."))
-    .enablePlugins(ScalaxbPlugin)
-    .enablePlugins(JmhPlugin)
+Test / parallelExecution := false
+logBuffered              := false
+fork                     := true
+
+javaOptions += "-Xmx4G"
+
+val scala2Version = "2.13.8"
+val scala3Version = "3.1.2"
+
+lazy val common =
+  (projectMatrix in file(s"common"))
+    .jvmPlatform(List(scala2Version, scala3Version))
+
+lazy val scala2 =
+  (projectMatrix in file(s"scala2"))
     .settings(
       libraryDependencies ++= List(scalaXml, scalaParser, phobos, jaxb, jaxbactivation, jaxbruntime),
-      Test / parallelExecution := false,
-      logBuffered              := false,
-      fork                     := true,
-      javaOptions += "-Xmx4G",
       Compile / scalaxb / scalaxbPackageName := "xb",
-      scalacOptions ++= List("-Ymacro-annotations"),
     )
+    .enablePlugins(ScalaxbPlugin)
+    .enablePlugins(JmhPlugin)
+    .dependsOn(common)
+    .jvmPlatform(List(scala2Version))
+
+lazy val scala3 =
+  (projectMatrix in file(s"scala3"))
+    .settings(
+      libraryDependencies ++= List(phobos),
+    )
+    .enablePlugins(JmhPlugin)
+    .dependsOn(common)
+    .jvmPlatform(List(scala3Version))
