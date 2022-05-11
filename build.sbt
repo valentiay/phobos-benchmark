@@ -1,8 +1,6 @@
 import sbt.Compile
 
-ThisBuild / name := "phobos-benchmark"
-
-ThisBuild / version := "0.1"
+ThisBuild / version := "0.2"
 
 ThisBuild / scalaVersion := "2.13.8"
 
@@ -45,3 +43,9 @@ lazy val scala3 =
     .enablePlugins(JmhPlugin)
     .dependsOn(common)
     .jvmPlatform(List(scala3Version))
+
+addCommandAlias(
+  "benchmark",
+  ";scala33 / Jmh / run -rf csv -prof gc -rff ../../../results/scala3.csv" +
+    ";scala2 / Jmh / run -rf csv -prof gc -rff ../../../results/scala2.csv",
+)
