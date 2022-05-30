@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit
 import scala.xml.XML
 
 @BenchmarkMode(Array(Mode.AverageTime))
-@Warmup(iterations = 3, time = 1, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 5, time = 5, timeUnit = TimeUnit.SECONDS)
-@Fork(1)
+@Warmup(iterations = 10, time = 1, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 10, time = 10, timeUnit = TimeUnit.SECONDS)
+@Fork(3)
 class BalancedBenchmark {
   @Benchmark
   def phobos2_1 = XmlDecoder[PhobosBalancedItems].decode(balanced1)

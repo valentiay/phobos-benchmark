@@ -2,12 +2,13 @@ import csv
 import matplotlib.pyplot as plt
 import os
 import re
+import sys
 
 from pathlib import Path
 
 # READ DATA
 
-resultsDir = 'results'
+resultsDir = 'results' if len(sys.argv) <= 1 else sys.argv[1]
 rows = []
 directory = os.path.join(resultsDir)
 for root, dirs, files in os.walk(directory):
@@ -63,13 +64,38 @@ def chartMetric(benchmark, metric, metrics):
 
   for library in libraries:
     points  = sorted(libraries[library], key=lambda d: d['size'])
+#     xs = [point['size'] for point in points if point['size'] < 10000]
+#     ys = [point['value'] for point in points if point['size'] < 10000]
     xs = [point['size'] for point in points]
     ys = [point['value'] for point in points]
     errors = [point['error'] for point in points]
-    plt.errorbar(xs, ys, yerr=errors, label=library, capsize=5)
+#     plt.errorbar(xs, ys, yerr=errors, label=library, capsize=5)
+    plt.errorbar(xs, ys, label=library, capsize=5, fmt='-x')
+    plt.xscale('log')
+    plt.yscale('log')
 
   plt.legend()
   plt.savefig(f'charts/{normalizeName(benchmark)}/{normalizeName(benchmark)}-{normalizeName(metric)}.png')
+
+def chartRelative(benchmark, metric, metrics, baseline):
+  libraries = groupBy(metrics[metric], 'library')
+  plt.clf()
+
+  baselinePoints = sorted(libraries[baseline], key=lambda d: d['size'])
+  for library in libraries:
+    points  = sorted(libraries[library], key=lambda d: d['size'])
+#     xs = [point['size'] for point in points if point['size'] < 10000]
+#     ys = [point['value'] for point in points if point['size'] < 10000]
+    xs = [point['size'] for point in points]
+    ys = [points[i]['value'] / baselinePoints[i]['value'] for i in range(len(points))]
+#     errors = [point['error'] for point in points]
+#     plt.errorbar(xs, ys, yerr=errors, label=library, capsize=5)
+    plt.errorbar(xs, ys, label=library, capsize=5, fmt='-x')
+    plt.xscale('log')
+#     plt.yscale('log')
+
+  plt.legend()
+  plt.savefig(f'charts/{normalizeName(benchmark)}/relative/{normalizeName(benchmark)}-{normalizeName(metric)}.png')
 
 def chartBenchmark(benchmark, points):
   metrics = groupBy(points, 'metric')
@@ -77,6 +103,11 @@ def chartBenchmark(benchmark, points):
   chartMetric(benchmark, 'avgt', metrics)
   chartMetric(benchmark, '·gc.alloc.rate.norm', metrics)
   chartMetric(benchmark, '·gc.time', metrics)
+  Path(f'charts/{normalizeName(benchmark)}/relative').mkdir(parents=True, exist_ok=True)
+  baseline = 'phobos'
+  chartRelative(benchmark, 'avgt', metrics, baseline)
+  chartRelative(benchmark, '·gc.alloc.rate.norm', metrics, baseline)
+  chartRelative(benchmark, '·gc.time', metrics, baseline)
 
 Path('charts').mkdir(parents=True, exist_ok=True)
 

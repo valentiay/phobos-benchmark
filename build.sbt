@@ -6,7 +6,7 @@ ThisBuild / scalaVersion := "2.13.8"
 
 lazy val scalaXml       = "org.scala-lang.modules" %% "scala-xml"                % "2.1.0"
 lazy val scalaParser    = "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.1"
-lazy val phobos         = "ru.tinkoff"             %% "phobos-core"              % "0.15.0"
+lazy val phobos         = "ru.tinkoff"             %% "phobos-core"              % "0.15.0-anyrefmap-SNAPSHOT"
 lazy val jaxb           = "javax.xml.bind"          % "jaxb-api"                 % "2.3.1"
 lazy val jaxbactivation = "javax.activation"        % "activation"               % "1.1.1"
 lazy val jaxbruntime    = "org.glassfish.jaxb"      % "jaxb-runtime"             % "2.3.1"
@@ -46,6 +46,6 @@ lazy val scala3 =
 
 addCommandAlias(
   "benchmark",
-  ";scala33 / Jmh / run -rf csv -prof gc -rff ../../../results/scala3.csv" +
+  ";scala33 / Jmh / run -rf csv -prof gc -rff ../../../results/scala3-new.csv" +
     ";scala2 / Jmh / run -rf csv -prof gc -rff ../../../results/scala2.csv",
 )

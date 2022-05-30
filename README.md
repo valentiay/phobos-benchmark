@@ -59,5 +59,5 @@ bytes per operation.
 
 ### Results for version `0.0.1`
 Results of benchmarking are saved in `results` directory.
-![memory chart](results/0.1.0/time.png)
-![memory chart](results/0.1.0/memory.png)
+![memory chart](results_old/0.1.0/time.png)
+![memory chart](results_old/0.1.0/memory.png)
